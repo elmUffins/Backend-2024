@@ -52,3 +52,20 @@ UPDATE marina SET Apellido_Marinero = 'Kogan' WHERE DNI = 35583090;
 #5)
 DELETE FROM marina WHERE DNI_Marinero = 20546413;
 ```
+
+### TP 02
+```sql
+#1)
+SELECT e.dni, e.nombre, e.apellido, s.nombre AS nombre_sector
+FROM empleado e
+JOIN sector s ON e.id_sector = s.id;
+
+#2)
+SELECT id, nombre, superficie 
+FROM sala
+ORDER BY superficie DESC
+LIMIT 3;
+
+#3)
+
+```
