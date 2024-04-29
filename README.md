@@ -55,17 +55,71 @@ DELETE FROM marina WHERE DNI_Marinero = 20546413;
 
 ### TP 02
 ```sql
-#1)
+# 1)
 SELECT e.dni, e.nombre, e.apellido, s.nombre AS nombre_sector
 FROM empleado e
 JOIN sector s ON e.id_sector = s.id;
 
-#2)
+# 2)
 SELECT id, nombre, superficie 
 FROM sala
 ORDER BY superficie DESC
 LIMIT 3;
 
-#3)
+# 3)
+SELECT e.nombre, e.apellido, t.numero
+FROM empleado e
+LEFT JOIN telefono t ON e.dni = t.dni_duenio 
+WHERE id_sector = 1
+
+# 4)
+INSERT INTO empleado (dni, nombre, apellido, email, id_sector)
+VALUES (40216465, "Alfredo", "García", "alfregar@gmail.com", 4)
+
+# 5)
+SELECT z.*, s.nombre, s.apellido_jefe
+FROM sala z
+LEFT JOIN sector s ON id_sector = s.id
+
+# 6)
+UPDATE sector SET email_jefe = "gmedina@simuladores.com.ar" WHERE dni_jefe = 13954782;
+UPDATE sector SET email_jefe = "plampone@simuladores.com.ar" WHERE dni_jefe = 13239854;
+UPDATE sector SET email_jefe = "msantos@simuladores.com.ar" WHERE dni_jefe = 12893574;
+UPDATE sector SET email_jefe = "eravenna@simuladores.com.ar" WHERE dni_jefe = 14539029;
+
+# 7)
+DELETE FROM telefono WHERE dni_duenio = 8578124;
+DELETE FROM empleado WHERE dni = 8578124;
+
+# 8)
+UPDATE empleado SET id_sector = 3 WHERE dni = 43182902;
+
+# 9)
+SELECT e.*, s.nombre, s.apellido_jefe
+FROM empleado e 
+JOIN sector s ON e.id_sector = s.id #No hay número de teléfono de los jefes en la tabla
+WHERE dni = 18354680
+
+# 10)
+DELETE FROM telefono WHERE dni_duenio = 18354680;
+DELETE FROM empleado WHERE dni = 18354680;
+INSERT INTO empleado (dni, nombre, apellido, email, id_sector)
+VALUES (32463195, "Manuel", "Coppa", "manuelcoppa2@gmail.com", 2);
+INSERT INTO telefono (numero, dni_duenio)
+VALUES (1167568673, 32463195); 
+
+# BONUS 1
+# Esta instrucción permite crear una tabla mediante el uso de 'CREATE TABLE'
+# Allí se pueden insertar emails y vincular a DNIs existentes en la tabla 'empleado'
+CREATE TABLE email (
+    email VARCHAR(255),
+    dni_empleado INT,
+    FOREIGN KEY (dni_empleado) REFERENCES empleado(dni)
+);
+
+# BONUS 2
+# Averiguamos que utilizar 'SUM()' suma todos los valores de una columna, permitiendo hacer un total
+SELECT SUM(superficie) AS suma_superficies
+FROM sala;
 
 ```
