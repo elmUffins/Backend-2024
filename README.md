@@ -127,7 +127,7 @@ FROM sala;
 # Sección Javascript
 ## TP 01
 ### Ejercicio 1
-```
+```js
 let alumno = [
     {
         nombre: "Lewis",
