@@ -2,7 +2,8 @@
 ### Alumno: Eric Gerzenstein
 ### Profesor: Ignacio Vigilante
 
-### TP 01
+# Sección SQL
+## TP 01
 ```sql
 #Tabla de Barcos:
 #1) 
@@ -121,5 +122,84 @@ CREATE TABLE email (
 # Averiguamos que utilizar 'SUM()' suma todos los valores de una columna, permitiendo hacer un total
 SELECT SUM(superficie) AS suma_superficies
 FROM sala;
+
+```
+# Sección Javascript
+## TP 01
+### Ejercicio 1
+```
+let alumno = [
+    {
+        nombre: "Lewis",
+        apellido: "Hamilton",
+        dni: 48111111,
+        anio: 4,
+        curso: "A",
+        nota: 8,
+    },
+
+    {
+        nombre: "Rodrigo",
+        apellido: "Aliendro",
+        dni: 48222222,
+        anio: 4,
+        curso: "A",
+        nota: 10,
+    },
+
+    {
+        nombre: "Mauricio",
+        apellido: "Macri",
+        dni: 48333333,
+        anio: 4,
+        curso: "B",
+        nota: 7,
+    },
+
+    {
+        nombre: "Tomás",
+        apellido: "Mondrik",
+        dni: 48444444,
+        anio: 4,
+        curso: "B",
+        nota: 10,
+    },
+
+    {
+        nombre: "Martín",
+        apellido: "Demichelis",
+        dni: 48555555,
+        anio: 5,
+        curso: "A",
+        nota: 8,
+    },
+
+    {
+        nombre: "Diego",
+        apellido: "Martinez",
+        dni: 48666666,
+        anio: 5,
+        curso: "A",
+        nota: 1,
+    },
+
+    {
+        nombre: "Luis",
+        apellido: "Advíncula",
+        dni: 48777777,
+        anio: 3,
+        curso: "B",
+        nota: 3,
+    },
+
+    {
+        nombre: "Martín",
+        apellido: "Urinovsky",
+        dni: 46345678,
+        anio: 3,
+        curso: "B",
+        nota: 5,
+    }
+]
 
 ```
