@@ -17,6 +17,14 @@ const getArtistas = async (_, res) => {
             ...
         ]
     */
+
+    // 1) BUSCAR LOS DATOS EN LA DB
+
+    const [rows, fields] = await conn.query("SELECT * FROM artistas");
+
+    // 2) RESPONDER EN JSON
+
+    res.json(rows);
 };
 
 const getArtista = async (req, res) => {
@@ -29,6 +37,12 @@ const getArtista = async (req, res) => {
             "nombre": "Nombre del artista"
         }
     */
+
+        const id = req.params.id;
+
+        const [rows, fields] = await conn.query("SELECT * FROM WHERE id = ?", [id]);
+
+        res.json(rows);
 };
 
 const createArtista = async (req, res) => {
