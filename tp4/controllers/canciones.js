@@ -1,9 +1,7 @@
 import { conn } from "../db.js";
 
 const getCanciones = async (_, res) => {
-    // Completar con la consulta que devuelve todas las canciones
-    // Recordar que los parámetros de una consulta GET se encuentran en req.params
-    // Deberían devolver los datos de la siguiente forma:
+
     /*
         [
             {
@@ -42,9 +40,7 @@ const getCanciones = async (_, res) => {
 };
 
 const getCancion = async (req, res) => {
-    // Completar con la consulta que devuelve una canción
-    // Recordar que los parámetros de una consulta GET se encuentran en req.params
-    // Deberían devolver los datos de la siguiente forma:
+
     /*
         {
             "id": "Id de la canción",
@@ -76,9 +72,7 @@ const getCancion = async (req, res) => {
 };
 
 const createCancion = async (req, res) => {
-    // Completar con la consulta que crea una canción
-    // Recordar que los parámetros de una consulta POST se encuentran en req.body
-    // Deberían recibir los datos de la siguiente forma:
+
     /*
         {
             "nombre": "Nombre de la canción",
@@ -86,7 +80,6 @@ const createCancion = async (req, res) => {
             "duracion": "Duración de la canción",
         }
     */
-    // (Reproducciones se inicializa en 0)
 
     const { nombre, album, duracion } = req.body
 
@@ -96,9 +89,7 @@ const createCancion = async (req, res) => {
 };
 
 const updateCancion = async (req, res) => {
-    // Completar con la consulta que actualiza una canción
-    // Recordar que los parámetros de una consulta PUT se encuentran en req.body
-    // Deberían recibir los datos de la siguiente forma:
+
     /*
         {
             "nombre": "Nombre de la canción",
@@ -106,7 +97,6 @@ const updateCancion = async (req, res) => {
             "duracion": "Duración de la canción",
         }
     */
-    // (Reproducciones no se puede modificar con esta consulta)
 
     const { nombre, album, duracion } = req.body
     const id = req.params.id
@@ -117,8 +107,6 @@ const updateCancion = async (req, res) => {
 };
 
 const deleteCancion = async (req, res) => {
-    // Completar con la consulta que elimina una canción
-    // Recordar que los parámetros de una consulta DELETE se encuentran en req.params
 
     const id = req.params.id
 
@@ -128,12 +116,10 @@ const deleteCancion = async (req, res) => {
 };
 
 const reproducirCancion = async (req, res) => {
-    // Completar con la consulta que aumenta las reproducciones de una canción
-    // En este caso es una consulta PUT, pero no recibe ningún parámetro en el body, solo en los params
 
     const id = req.params.id
 
-    await conn.query("UPDATE canciones SET reproducciones = reproducciones + 1 WHERE id = ?", [id])
+    await conn.query("UPDATE canciones SET reproducciones += 1 WHERE id = ?", [id])
 
     res.json({ id })
 };
