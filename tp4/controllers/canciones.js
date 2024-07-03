@@ -24,7 +24,7 @@ const getCanciones = async (_, res) => {
         ]
     */
 
-    const rows = await conn.query(`
+    const filas = await conn.query(`
       SELECT 
         c.id,
         c.nombre,
@@ -36,7 +36,7 @@ const getCanciones = async (_, res) => {
       JOIN albumes al ON c.album = al.id
       JOIN artistas ar ON al.artista = ar.id
     `);
-    res.json(rows[0]);
+    res.json(filas[0]);
 };
 
 const getCancion = async (req, res) => {
@@ -54,7 +54,7 @@ const getCancion = async (req, res) => {
 
     const id = req.params.id
 
-    const rows = await conn.query(
+    const filas = await conn.query(
         `SELECT 
             c.id,
             c.nombre,
@@ -68,7 +68,7 @@ const getCancion = async (req, res) => {
         WHERE c.id = ?`, [id]
     )
 
-    res.json(rows[0])
+    res.json(filas[0])
 };
 
 const createCancion = async (req, res) => {
@@ -119,7 +119,7 @@ const reproducirCancion = async (req, res) => {
 
     const id = req.params.id
 
-    await conn.query("UPDATE canciones SET reproducciones += 1 WHERE id = ?", [id])
+    await conn.query("UPDATE canciones SET reproducciones = reproducciones + 1 WHERE id = ?", [id])
 
     res.json({ id })
 };

@@ -16,9 +16,9 @@ const getArtistas = async (_, res) => {
         ]
     */
 
-    const rows = await conn.query("SELECT * FROM artistas")
+    const filas = await conn.query("SELECT * FROM artistas")
 
-    res.json(rows[0])
+    res.json(filas[0])
 };
 
 const getArtista = async (req, res) => {
@@ -32,9 +32,9 @@ const getArtista = async (req, res) => {
 
     const id = req.params.id
 
-    const rows = await conn.query("SELECT * FROM artistas WHERE id = ?", [id])
+    const filas = await conn.query("SELECT * FROM artistas WHERE id = ?", [id])
 
-    res.json(rows[0])
+    res.json(filas[0])
 
 };
 
@@ -82,7 +82,7 @@ const getAlbumesByArtista = async (req, res) => {
 
     const id = req.params.id
 
-    const rows = await conn.query(`
+    const filas = await conn.query(`
         SELECT
             al.id,
             al.nombre,
@@ -91,14 +91,14 @@ const getAlbumesByArtista = async (req, res) => {
             JOIN artistas ar ON al.artista = ar.id
             WHERE ar.id = ?`, [id])
 
-    res.json(rows[0])
+    res.json(filas[0])
 };
 
 const getCancionesByArtista = async (req, res) => {
 
     const id = req.params.id
 
-    const rows = await conn.query(`
+    const filas = await conn.query(`
         SELECT
             c.id,
             c.nombre,
@@ -112,7 +112,7 @@ const getCancionesByArtista = async (req, res) => {
         WHERE ar.id = ?
     `, [id])
 
-    res.json(rows[0])
+    res.json(filas[0])
 };
 
 const artistas = {

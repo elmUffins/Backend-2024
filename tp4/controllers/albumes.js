@@ -18,16 +18,23 @@ const getAlbumes = async (_, res) => {
         ]
     */
 
-    const rows = await conn.query(`
-        SELECT
-            al.id,
-            al.nombre,
-            ar.nombre AS nombre_artista
-        FROM albumes al
-        JOIN artistas ar ON al.artista = ar.id
-    `)
-
-    res.json(rows[0])
+    // Uso de try - catch en el primer query de haber errores
+    // que frecuentemente se dan en la conexión a la base de datos.
+    // No tuvimos ningún problema, pero decidimos dejarlo para
+    // mostrar nuestro proceso mental.
+    try {
+        const filas = await conn.query(`
+            SELECT
+                al.id,
+                al.nombre,
+                ar.nombre AS nombre_artista
+            FROM albumes al
+            JOIN artistas ar ON al.artista = ar.id
+        `)
+        res.json(filas[0]);}
+    catch (e) {
+        console.log(e)
+    }
 };
 
 const getAlbum = async (req, res) => {
@@ -42,7 +49,7 @@ const getAlbum = async (req, res) => {
 
     const id = req.params.id
 
-    const rows = await conn.query(`
+    const filas = await conn.query(`
         SELECT
             al.id,
             al.nombre,
@@ -52,7 +59,7 @@ const getAlbum = async (req, res) => {
         WHERE al.id = ?
     `, [id])
 
-    res.json(rows[0])
+    res.json(filas[0])
 };
 
 const createAlbum = async (req, res) => {
@@ -98,10 +105,11 @@ const deleteAlbum = async (req, res) => {
 };
 
 const getCancionesByAlbum = async (req, res) => {
+    // Misma forma que getCanciones
 
     const id = req.params.id
 
-    const rows = await conn.query(`
+    const filas = await conn.query(`
         SELECT
             c.id,
             c.nombre,
@@ -115,7 +123,7 @@ const getCancionesByAlbum = async (req, res) => {
         WHERE al.id = ?
     `, [id])
 
-    res.json(rows[0])
+    res.json(filas[0])
 };
 
 const albumes = {
