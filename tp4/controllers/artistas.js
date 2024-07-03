@@ -109,8 +109,7 @@ const getCancionesByArtista = async (req, res) => {
         FROM canciones c
         JOIN albumes al ON c.album = al.id
         JOIN artistas ar ON al.artista = ar.id
-        WHERE ar.id = ?
-    `, [id])
+        WHERE ar.id = ?`, [id])
 
     res.json(filas[0])
 };
