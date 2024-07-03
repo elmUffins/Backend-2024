@@ -31,7 +31,7 @@ app.get("/albumes/:id", albumes.getAlbum);
 app.post("/albumes", albumes.createAlbum);
 app.put("/albumes/:id", albumes.updateAlbum);
 app.delete("/albumes/:id", albumes.deleteAlbum);
-app.get("/albumes/:id/canciones", albumes.getCancionesByAlbum)
+app.get("/albumes/:id/canciones", albumes.getCancionesByAlbum);
 
 // Canciones
 app.get("/canciones", canciones.getCanciones);
